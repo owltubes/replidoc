@@ -1,0 +1,1 @@
+Replicate the reference document using semantic HTML and CSS. Match the layout, typography, colors, spacing, and visual hierarchy as closely as possible. Produce clean, well-structured code that renders identically at the target DPI.

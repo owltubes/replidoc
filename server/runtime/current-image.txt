@@ -1,0 +1,1 @@
+Generate an image that closely replicates the visual appearance of the reference document. Match the layout, colors, typography, and overall composition as precisely as possible.

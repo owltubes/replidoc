@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RepliDoc</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <header id="toolbar">
+    <div class="toolbar-left">
+      <span class="app-title">RepliDoc</span>
+    </div>
+    <div class="toolbar-controls">
+      <label>
+        Page Size
+        <select id="page-size">
+          <option value="a4" selected>A4 (8.27 × 11.69 in)</option>
+        </select>
+      </label>
+      <label>
+        DPI
+        <select id="dpi">
+          <option value="150">150</option>
+          <option value="300" selected>300</option>
+        </select>
+      </label>
+
+      <div class="toolbar-sep"></div>
+
+      <label>
+        Job Type
+        <select id="job-type">
+          <option value="htmlcss" selected>HTML / CSS</option>
+          <option value="image">Image</option>
+        </select>
+      </label>
+
+      <div id="fidelity-group" class="fidelity-group">
+        <button class="fidelity-btn active" data-fidelity="high">Match Original</button>
+        <button class="fidelity-btn" data-fidelity="low">Interpret Freely</button>
+      </div>
+
+      <button id="btn-instructions" class="toolbar-btn instructions-btn">Instructions</button>
+      <span id="submit-status" class="submit-status"></span>
+      <button id="btn-submit" class="toolbar-btn submit-btn">Submit</button>
+    </div>
+  </header>
+
+  <main id="workspace">
+    <section class="pane" id="pane-left">
+      <div class="pane-label"><span>Reference</span></div>
+      <div class="pane-scroll" id="scroll-left">
+        <div class="page-frame" id="page-left">
+          <div class="drop-zone" id="drop-zone">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" y1="3" x2="12" y2="15" />
+            </svg>
+            <p>Drop a PDF or PNG here</p>
+            <p class="hint">or click to browse</p>
+            <input type="file" id="file-input" accept=".pdf,.png,application/pdf,image/png" />
+          </div>
+          <canvas id="ref-canvas"></canvas>
+          <img id="ref-image" alt="reference" />
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="pane" id="pane-right">
+      <div class="pane-label">
+        <span>Recreation</span>
+        <div class="pane-actions" id="right-actions">
+          <button id="btn-edit" class="pane-btn" title="Toggle editor">Edit</button>
+          <button id="btn-save" class="pane-btn primary" title="Save &amp; refresh">Save</button>
+        </div>
+      </div>
+      <div class="pane-scroll" id="scroll-right">
+        <div class="page-frame" id="page-right">
+          <iframe id="preview-iframe"></iframe>
+        </div>
+      </div>
+      <div class="editor-panel" id="editor-panel">
+        <div class="editor-tabs">
+          <button class="editor-tab active" data-tab="html">index.html</button>
+          <button class="editor-tab" data-tab="css">styles.css</button>
+        </div>
+        <div class="editor-body">
+          <textarea id="editor-html" class="editor-textarea" spellcheck="false"></textarea>
+          <textarea id="editor-css" class="editor-textarea" spellcheck="false"></textarea>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Instructions floating panel -->
+  <div id="instructions-panel" class="instructions-panel">
+    <div class="instructions-header">
+      <span class="instructions-title">Instructions</span>
+      <span id="instruction-status" class="instruction-status"></span>
+    </div>
+    <textarea id="instruction-textarea" class="instruction-textarea"
+              maxlength="2400" placeholder="Enter instructions for the job…"
+              spellcheck="false"></textarea>
+    <div class="instructions-footer">
+      <span class="instruction-limit">2400 character limit</span>
+      <button id="instruction-save" class="pane-btn primary">Save</button>
+    </div>
+  </div>
+
+  <div class="drag-overlay" id="drag-overlay">
+    <span>Drop file to load</span>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
